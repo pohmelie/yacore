@@ -31,14 +31,18 @@ cookiecutter gh:pohmelie/cookiecutter-yacore
 ```
 Read more at [cookiecutter-yacore](https://github.com/pohmelie/cookiecutter-yacore).
 
-# Documentation
+## Documentation
 TBD
 
-# License
+## License
 `yacore` is offered under MIT license.
 
-# Development
-## Run tests
+## Development
+### Installation
+```bash
+pip install -e ./[dev]
+```
+### Run tests
 Since coverage issue/feature, plugins coverage is broken by default. [Workaround](https://pytest-cov.readthedocs.io/en/latest/plugins.html):
 ``` bash
 COV_CORE_SOURCE=yacore COV_CORE_CONFIG=.coveragerc COV_CORE_DATAFILE=.coverage.eager pytest
