@@ -1,4 +1,10 @@
-# yacore
+<p align="center">
+  <img width="350" height="208" src="https://raw.githubusercontent.com/pohmelie/yacore/master/docs/img/yacore.png" alt="yacore">
+</p>
+<h1>
+<p align="center"><strong>yacore</strong></p></h1>
+
+---
 [![Github actions status for master branch](https://github.com/pohmelie/yacore/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/pohmelie/yacore/actions)
 [![Codecov coverage for master branch](https://codecov.io/gh/pohmelie/yacore/branch/master/graph/badge.svg)](https://codecov.io/gh/pohmelie/yacore)
 [![Pypi version](https://img.shields.io/pypi/v/yacore.svg)](https://pypi.org/project/yacore/)
