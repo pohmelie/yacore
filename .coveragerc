@@ -1,0 +1,8 @@
+[run]
+source =
+    yacore
+omit =
+    yacore/log/*.py
+    yacore/db/postgresql/fixtures.py
+[report]
+show_missing = true

@@ -1,0 +1,7 @@
+include readme.md
+include license.txt
+include history.md
+include .coveragerc
+include .flake8
+include pytest.ini
+recursive-include tests *
