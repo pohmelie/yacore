@@ -1,8 +1,7 @@
 <p align="center">
   <img width="350" height="350" src="https://raw.githubusercontent.com/pohmelie/yacore/master/docs/img/yacore.png" alt="yacore">
 </p>
-<h1>
-<p align="center"><strong>yacore</strong></p></h1>
+<h1 align="center" style="font-size: 3rem; margin: -15px 0">yacore</h1>
 
 ---
 [![Github actions status for master branch](https://github.com/pohmelie/yacore/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/pohmelie/yacore/actions)
