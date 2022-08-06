@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="350" height="208" src="https://raw.githubusercontent.com/pohmelie/yacore/master/docs/img/yacore.png" alt="yacore">
+  <img width="350" height="350" src="https://raw.githubusercontent.com/pohmelie/yacore/master/docs/img/yacore.png" alt="yacore">
 </p>
 <h1>
 <p align="center"><strong>yacore</strong></p></h1>
