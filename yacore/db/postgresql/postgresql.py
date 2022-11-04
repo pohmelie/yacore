@@ -209,10 +209,9 @@ class DatabaseMigrator:
 
     def load_modules(self) -> List[Migration]:
         result = []
-        for file in resources.files(self._script_location).iterdir():
-            if file != "__init__.py" and file.endswith(".py"):
-                module_name = file.removesuffix(".py")
-                module = importlib.import_module(f"{self._script_location}.{module_name}")
+        for path in resources.files(self._script_location).iterdir():
+            if path.suffix == ".py" and path.stem != "__init__":
+                module = importlib.import_module(f"{self._script_location}.{path.stem}")
                 result.append(Migration.from_module(module))
         return result
 
