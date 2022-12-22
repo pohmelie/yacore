@@ -29,8 +29,8 @@ setup(
     },
     python_requires=">= 3.9",
     install_requires=[
-        "cock >= 0.8.0",
-        "facet >= 0.6.0",
+        "cock >= 0.11.0",
+        "facet >= 0.9.1",
         "giveme",
     ],
     extras_require=extras_require,
