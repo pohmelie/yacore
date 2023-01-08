@@ -11,7 +11,7 @@ extras_require = {
     "db.postgresql": ["asyncpg", "yarl"],
     "log.loguru": ["loguru"],
     "log.std": ["pyyaml"],
-    "net.http": ["async-timeout", "fastapi", "httpx", "hypercorn", "yarl"],
+    "net.http": ["async-timeout", "fastapi >= 0.89.0", "httpx", "hypercorn", "yarl"],
 }
 
 extras_dev = set()

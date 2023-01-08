@@ -77,7 +77,7 @@ class NetHttpServer(ServiceMixin):
         self.app.add_exception_handler(Exception, self.error_handler)
         self.app.add_exception_handler(StarletteHTTPException, self.exception_handler)
         self.app.add_exception_handler(RequestValidationError, self.validation_handler)
-        self.add_get("/healthcheck", self.get_healthcheck, response_model=HealthCheck)
+        self.add_get("/healthcheck", self.get_healthcheck)
         self.add_task(serve(
             self.app,
             self.hypercorn_config,
@@ -115,7 +115,7 @@ class NetHttpServer(ServiceMixin):
             data=exc.errors(),
         )
 
-    async def get_healthcheck(self):
+    async def get_healthcheck(self) -> HealthCheck:
         return self.healthcheck
 
 
