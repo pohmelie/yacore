@@ -7,7 +7,8 @@ VERSION = PACKAGE_ROOT / "yacore" / "version.txt"
 
 
 extras_require = {
-    "dev": ["flake8", "pytest", "pytest-asyncio", "pytest-cov", "testcontainers"],
+    "dev": ["flake8", "pytest", "pytest-asyncio", "pytest-cov", "testcontainers",
+            "mkdocs==1.4.0", "mkautodoc==0.2.0", "mkdocs-material==8.5.11"],
     "db.postgresql": ["asyncpg", "yarl"],
     "log.loguru": ["loguru"],
     "log.std": ["pyyaml"],

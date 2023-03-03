@@ -1,0 +1,53 @@
+site_name: YACORE
+site_description: Yet Another CORE library
+site_url: https://pohmelie.github.io/yacore/
+
+theme:
+  name: "material"
+  palette:
+    - scheme: "default"
+      media: "(prefers-color-scheme: light)"
+      toggle:
+        icon: "material/lightbulb"
+        name: "Switch to dark mode"
+    - scheme: "slate"
+      media: "(prefers-color-scheme: dark)"
+      primary: "blue"
+      toggle:
+        icon: "material/lightbulb-outline"
+        name: "Switch to light mode"
+  features:
+    - navigation.sections
+
+repo_name: pohmelie/yacore
+repo_url: https://github.com/pohmelie/yacore
+edit_uri: ""
+
+nav:
+  - Introduction: "index.md"
+  - Usage:
+      - Create new proejct: "create-new-project.md"
+      - Backends: "backends.md"
+  #     - Advanced Usage: "advanced.md"
+  # - Guides:
+  #     - Async Support: "async.md"
+  #     - HTTP/2 Support: "http2.md"
+  #     - Requests Compatibility: "compatibility.md"
+  #     - Troubleshooting: "troubleshooting.md"
+  # - API Reference:
+  #     - Developer Interface: "api.md"
+  #     - Exceptions: "exceptions.md"
+  #     - Environment Variables: "environment_variables.md"
+  # - Community:
+  #     - Third Party Packages: "third_party_packages.md"
+  #     - Contributing: "contributing.md"
+  #     - Code of Conduct: "code_of_conduct.md"
+
+markdown_extensions:
+  - admonition
+  - codehilite:
+      css_class: highlight
+  - mkautodoc
+
+extra_css:
+  - css/custom.css
