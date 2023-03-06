@@ -38,13 +38,11 @@ jobs:
   docs:
     needs: tests
     runs-on: ubuntu-latest
-    # TODO: activate master-only mode after testing
-    # if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/master'
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
       - run: pip install -e ./[dev]
-      - run: mkdocs build
       - run: mkdocs gh-deploy
 
   deploy:

@@ -1,9 +1,10 @@
-site_name: YACORE
+site_name: yacore
 site_description: Yet Another CORE library
 site_url: https://pohmelie.github.io/yacore/
 
 theme:
   name: "material"
+  favicon: "img/yacore.png"
   palette:
     - scheme: "default"
       media: "(prefers-color-scheme: light)"
