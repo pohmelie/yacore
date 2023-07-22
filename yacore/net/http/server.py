@@ -1,5 +1,5 @@
 import asyncio
-from typing import Any, Optional
+from typing import Any
 
 from cock import Option, build_options_from_dict
 from facet import ServiceMixin
@@ -34,7 +34,7 @@ class HealthCheck(BaseModel):
     build_info: str
 
 
-def _api_error(status_code: int, code: str, message: Optional[str] = None, data: Optional[Any] = None):
+def _api_error(status_code: int, code: str, message: str | None = None, data: Any | None = None):
     return JSONResponse(
         status_code=status_code,
         content={

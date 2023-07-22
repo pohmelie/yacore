@@ -5,9 +5,10 @@ import logging
 import logging.config
 from pathlib import Path
 
-from click import Choice, Path as ClickPath
-from cock import Option, build_options_from_dict
 import yaml
+from click import Choice
+from click import Path as ClickPath
+from cock import Option, build_options_from_dict
 
 from yacore.injector import inject
 
@@ -43,12 +44,12 @@ def deep_merge(target, *args, allow_none=False):
             return target | source
         else:
             return copy.deepcopy(source)
-    elif not isinstance(source, (str, collections.abc.ByteString)) and \
+    elif not isinstance(source, str | collections.abc.ByteString) and \
             isinstance(source, collections.abc.Sequence):
         if isinstance(target, collections.abc.MutableSequence):
             for v in source:
                 target.append(v)
-        elif not isinstance(target, (str, collections.abc.ByteString)) and \
+        elif not isinstance(target, str | collections.abc.ByteString) and \
                 isinstance(target, collections.abc.Sequence):
             return tuple(itertools.chain(target, source))
         else:

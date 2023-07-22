@@ -7,7 +7,7 @@ VERSION = PACKAGE_ROOT / "yacore" / "version.txt"
 
 
 extras_require = {
-    "dev": ["flake8", "pytest", "pytest-asyncio", "pytest-cov", "testcontainers"],
+    "dev": ["ruff", "pytest", "pytest-asyncio", "pytest-cov", "testcontainers"],
     "db.postgresql": ["asyncpg", "yarl"],
     "log.loguru": ["loguru"],
     "log.std": ["pyyaml"],
@@ -27,7 +27,7 @@ setup(
     package_data={
         "": ["*.txt"],
     },
-    python_requires=">= 3.9",
+    python_requires=">= 3.11",
     install_requires=[
         "cock >= 0.11.0",
         "facet >= 0.9.1",

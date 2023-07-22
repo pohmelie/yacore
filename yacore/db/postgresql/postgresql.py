@@ -2,9 +2,10 @@ import asyncio
 import importlib
 import logging
 import time
+from collections.abc import Callable, Coroutine
 from dataclasses import dataclass
 from importlib import resources
-from typing import Any, Callable, Coroutine, Dict, List, Optional, Set
+from typing import Any
 
 import asyncpg
 from asyncpg import Connection
@@ -50,7 +51,7 @@ class DbPostgresql(ServiceMixin):
         self._pool_min_size = pool_min_size
         self._pool_max_size = pool_max_size
 
-        self._pool: Optional[Pool] = None
+        self._pool: Pool | None = None
 
     async def start(self):
         for _ in range(self._attempts):
@@ -98,7 +99,7 @@ class DbPostgresql(ServiceMixin):
             await conn.execute("DROP SCHEMA public CASCADE")
             await conn.execute("CREATE SCHEMA public")
 
-    async def migrate(self, migration_script_location: str, migration_target_revision: Optional[str] = None):
+    async def migrate(self, migration_script_location: str, migration_target_revision: str | None = None):
         migrator = DatabaseMigrator(migration_script_location)
         async with self.get_connection() as conn:
             await migrator.migrate(conn, target=migration_target_revision)
@@ -128,7 +129,7 @@ def db_postgresql_from_config(config):
 @dataclass(frozen=True)
 class Migration:
     revision: str
-    depends_on: Optional[str]
+    depends_on: str | None
     migrate: Callable[[Connection], Coroutine]
 
     @classmethod
@@ -144,7 +145,7 @@ class DatabaseMigrator:
     def __init__(self, script_location: str):
         self._script_location = script_location
 
-    async def migrate(self, conn: Connection, *, target: Optional[str] = None):
+    async def migrate(self, conn: Connection, *, target: str | None = None):
         migrations = self.collect_migrations()
 
         await conn.execute("CREATE TABLE IF NOT EXISTS revision (id TEXT PRIMARY KEY)")
@@ -180,10 +181,10 @@ class DatabaseMigrator:
 
         logger.info("Database is migrated to %s", migration.revision)
 
-    def collect_migrations(self) -> List[Migration]:
-        collected_revs: Set[str] = set()
-        prerequisites: Dict[Optional[str], Migration] = {}
-        result: List[Migration] = []
+    def collect_migrations(self) -> list[Migration]:
+        collected_revs: set[str] = set()
+        prerequisites: dict[str | None, Migration] = {}
+        result: list[Migration] = []
         for migration in self.load_modules():
             if migration.depends_on in prerequisites:
                 raise MigrationError(f"Multiple revisions depend on {migration.depends_on}")
@@ -207,7 +208,7 @@ class DatabaseMigrator:
 
         return result
 
-    def load_modules(self) -> List[Migration]:
+    def load_modules(self) -> list[Migration]:
         result = []
         for path in resources.files(self._script_location).iterdir():
             if path.suffix == ".py" and path.stem != "__init__":

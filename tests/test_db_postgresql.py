@@ -1,12 +1,16 @@
 import time
-from typing import List, Optional
 from unittest.mock import AsyncMock, patch
 
 import pytest
 
-from yacore.db.postgresql.postgresql import (DbPostgresql, DatabaseMigrator, Migration,
-                                             MigrationError, db_postgresql_from_config,
-                                             migrate_using_config)
+from yacore.db.postgresql.postgresql import (
+    DatabaseMigrator,
+    DbPostgresql,
+    Migration,
+    MigrationError,
+    db_postgresql_from_config,
+    migrate_using_config,
+)
 
 
 @pytest.mark.asyncio
@@ -50,7 +54,7 @@ def test_database_from_config(core_config):
     assert str(database.url) == "postgresql://user:password@some_host:2345/some_database"
 
 
-async def case(database, current: Optional[str], target: Optional[str], expected: str, expected_calls: List[int]):
+async def case(database, current: str | None, target: str | None, expected: str, expected_calls: list[int]):
     calls = []
     migrations = [
         Migration("002", "001", AsyncMock(side_effect=lambda _: calls.append(2))),
