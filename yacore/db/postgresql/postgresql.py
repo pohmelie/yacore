@@ -76,7 +76,8 @@ class DbPostgresql(ServiceMixin):
 
     async def _create_pool(self) -> Pool:
         return await asyncpg.create_pool(
-            dsn=str(self._url), min_size=self._pool_min_size, max_size=self._pool_max_size
+            dsn=str(self._url), min_size=self._pool_min_size, max_size=self._pool_max_size,
+            timeout=self._interval
         )
 
     async def stop(self):

@@ -43,11 +43,15 @@ async def test_handler_validation_error(web_client, web_server: NetHttpServer):
     assert response.status_code == 422
     data = response.json()
     assert data["code"] == "common.validation_error"
-    assert data["data"] == [{
+    data = data["data"]
+    assert len(data) == 1
+    expected = {
         "loc": ["body", "value"],
-        "msg": "field required",
-        "type": "value_error.missing",
-    }]
+        "msg": "Field required",
+        "type": "missing",
+    }
+    for k, v in expected.items():
+        assert data[0][k] == v
 
 
 @pytest.mark.asyncio
