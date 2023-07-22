@@ -27,22 +27,12 @@ edit_uri: ""
 nav:
   - Introduction: "index.md"
   - Usage:
-      - Create new proejct: "create-new-project.md"
+      - New proejct: "new-project.md"
+      - Service structure:
+          - Entry point and configuration: "service-structure/entry-point-and-configuration.md"
+          - Service: "service-structure/service.md"
+          - Dependency injection: "service-structure/dependency-injection.md"
       - Backends: "backends.md"
-  #     - Advanced Usage: "advanced.md"
-  # - Guides:
-  #     - Async Support: "async.md"
-  #     - HTTP/2 Support: "http2.md"
-  #     - Requests Compatibility: "compatibility.md"
-  #     - Troubleshooting: "troubleshooting.md"
-  # - API Reference:
-  #     - Developer Interface: "api.md"
-  #     - Exceptions: "exceptions.md"
-  #     - Environment Variables: "environment_variables.md"
-  # - Community:
-  #     - Third Party Packages: "third_party_packages.md"
-  #     - Contributing: "contributing.md"
-  #     - Code of Conduct: "code_of_conduct.md"
 
 markdown_extensions:
   - admonition

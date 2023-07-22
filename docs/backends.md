@@ -1,6 +1,8 @@
+`DI` shortcut stands for `dependency injection name`, this will be explained in [dependency injection](dependency-injection.md) section.
+
 ## Database
 
-- `db.postgres`: [asyncpg](https://github.com/MagicStack/asyncpg), [yarl](https://github.com/aio-libs/yarl)
+- `db.postgres` (DI: `db_postgresql`): [asyncpg](https://github.com/MagicStack/asyncpg), [yarl](https://github.com/aio-libs/yarl)
 
 ## Logging
 
@@ -9,4 +11,4 @@
 
 ## Networking
 
-- `net.http`: [async-timeout](https://github.com/aio-libs/async-timeout), [fastapi](https://github.com/tiangolo/fastapi), [httpx](https://github.com/encode/httpx), [hypercorn](https://github.com/pgjones/hypercorn), [yarl](https://github.com/aio-libs/yarl)
+- `net.http` (DI: `net_http_server`): [async-timeout](https://github.com/aio-libs/async-timeout), [fastapi](https://github.com/tiangolo/fastapi), [httpx](https://github.com/encode/httpx), [hypercorn](https://github.com/pgjones/hypercorn), [yarl](https://github.com/aio-libs/yarl)
