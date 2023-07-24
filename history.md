@@ -1,3 +1,6 @@
+# 0.3.0 (24-07-2023)
+- add top-level imports from 3rd party libraries
+
 # 0.2.0 (22-07-2023)
 - target python version changed to `>= 3.11`
 - log/loguru: fix `InterceptHandler` for python 3.11
