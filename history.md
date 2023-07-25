@@ -1,3 +1,6 @@
+# 0.3.1 (25-07-2023)
+- fix `importlib.resources` deprication warning
+
 # 0.3.0 (24-07-2023)
 - add top-level imports from 3rd party libraries
 
