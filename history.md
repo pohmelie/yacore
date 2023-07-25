@@ -1,3 +1,6 @@
+# 0.3.2 (25-07-2023)
+- add default to `is_flag=True` options to allow it in `get_options_defaults` result
+
 # 0.3.1 (25-07-2023)
 - fix `importlib.resources` deprication warning
 

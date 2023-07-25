@@ -21,7 +21,7 @@ net_http_options = build_options_from_dict({
         "port": Option(default=80, type=int),
         "healthcheck_name": Option(default="noname"),
         "access_log_format": Option(default=ACCESS_LOG_DEFAULT_FORMAT),
-        "hide_methods_description_route": Option(is_flag=True),
+        "hide_methods_description_route": Option(default=False, is_flag=True),
         "build_info": Option(default="noinfo"),
     },
 })
