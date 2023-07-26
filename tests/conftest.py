@@ -34,6 +34,7 @@ def core_config(unused_tcp_port):
         "executors_io_threads_count": 2,
         "log_level": "debug",
         "net_http_build_info": "test-build-info",
+        "net_http_enable_healthcheck": True,
         "net_http_healthcheck_name": "test_name",
         "net_http_hide_methods_description_route": False,
         "net_http_host": "127.0.0.1",
