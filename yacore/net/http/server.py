@@ -19,6 +19,7 @@ net_http_options = build_options_from_dict({
     "net-http": {
         "host": Option(default="0.0.0.0"),
         "port": Option(default=80, type=int),
+        "disable_healthcheck": Option(default=False, is_flag=True),
         "healthcheck_name": Option(default="noname"),
         "access_log_format": Option(default=ACCESS_LOG_DEFAULT_FORMAT),
         "hide_methods_description_route": Option(default=False, is_flag=True),
@@ -47,11 +48,12 @@ def _api_error(status_code: int, code: str, message: str | None = None, data: An
 
 class NetHttpServer(ServiceMixin):
 
-    def __init__(self, host=None, port=80, *, healthcheck_name="noname", version="unknown",
+    def __init__(self, host=None, port=80, *, disable_healthcheck=False, healthcheck_name="noname", version="unknown",
                  build_info="noinfo", access_log_format=ACCESS_LOG_DEFAULT_FORMAT,
                  hide_methods_description_route=False):
         self.host = host
         self.port = port
+        self.disable_healthcheck = disable_healthcheck
         self.healthcheck = HealthCheck(
             ok=True,
             name=healthcheck_name,
@@ -77,7 +79,8 @@ class NetHttpServer(ServiceMixin):
         self.app.add_exception_handler(Exception, self.error_handler)
         self.app.add_exception_handler(StarletteHTTPException, self.exception_handler)
         self.app.add_exception_handler(RequestValidationError, self.validation_handler)
-        self.add_get("/healthcheck", self.get_healthcheck)
+        if not self.disable_healthcheck:
+            self.add_get("/healthcheck", self.get_healthcheck)
         self.add_task(serve(
             self.app,
             self.hypercorn_config,
@@ -125,9 +128,10 @@ def net_http_server_from_config(config, version):
     return NetHttpServer(
         host=config.net_http_host,
         port=config.net_http_port,
-        healthcheck_name=config.get("net_http_healthcheck_name", "noname"),
+        disable_healthcheck=config.net_http_disable_healthcheck,
+        healthcheck_name=config.net_http_healthcheck_name,
         version=version,
-        build_info=config.get("net_http_build_info", "noinfo"),
-        access_log_format=config.get("net_http_access_log_format", ACCESS_LOG_DEFAULT_FORMAT),
+        build_info=config.net_http_build_info,
+        access_log_format=config.net_http_access_log_format,
         hide_methods_description_route=config.net_http_hide_methods_description_route,
     )

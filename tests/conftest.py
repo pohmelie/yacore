@@ -1,36 +1,43 @@
 import pytest
 import pytest_asyncio
-from cock import Config
 
-from yacore.db.postgresql import DbPostgresql
-from yacore.executors import executors_from_config
+from yacore import get_options_defaults
+from yacore.db.postgresql import DbPostgresql, db_postgresql_options
+from yacore.executors import executors_from_config, executors_options
 from yacore.injector import injector, register
-from yacore.log.loguru import configure_logging_from_config
+from yacore.log.loguru import configure_logging_from_config, log_options
 from yacore.net.http import NetHttpClient, net_http_server_from_config
+from yacore.net.http.server import net_http_options
 
 
 @pytest.fixture(autouse=True)
 def core_config(unused_tcp_port):
-    cfg = Config({
-        "net_http_port": unused_tcp_port,
-        "net_http_host": "127.0.0.1",
-        "net_http_healthcheck_name": "test_name",
-        "net_http_build_info": "test-build-info",
-        "net_http_hide_methods_description_route": False,
-        "log_level": "debug",
-        "executors_io_threads_count": 2,
-        "executors_cpu_threads_count": 1,
-        "db_postgresql_host": "some_host",
-        "db_postgresql_port": 2345,
-        "db_postgresql_user": "user",
-        "db_postgresql_password": "password",
-        "db_postgresql_database": "some_database",
+    cfg = get_options_defaults(
+        db_postgresql_options,
+        executors_options,
+        log_options,
+        net_http_options,
+    )
+    cfg.update({
         "db_postgresql_connection_attempts": 500,
         "db_postgresql_connection_interval": 0.001,
-        "db_postgresql_pool_min_size": 0,
-        "db_postgresql_pool_max_size": 100500,
+        "db_postgresql_database": "some_database",
+        "db_postgresql_host": "some_host",
         "db_postgresql_migration_script_location": "some.location",
         "db_postgresql_migration_target_revision": None,
+        "db_postgresql_password": "password",
+        "db_postgresql_pool_max_size": 100500,
+        "db_postgresql_pool_min_size": 0,
+        "db_postgresql_port": 2345,
+        "db_postgresql_user": "user",
+        "executors_cpu_threads_count": 1,
+        "executors_io_threads_count": 2,
+        "log_level": "debug",
+        "net_http_build_info": "test-build-info",
+        "net_http_healthcheck_name": "test_name",
+        "net_http_hide_methods_description_route": False,
+        "net_http_host": "127.0.0.1",
+        "net_http_port": unused_tcp_port,
     })
     register(lambda: "version", name="version")
     register(lambda: cfg, name="config")
