@@ -1,3 +1,7 @@
+# 0.4.0 (27-07-2023)
+- remove all `is_flag` options, since they conflict with `cock` library getting options from file
+- `net.http.server`: `healthcheck` endpoint is disabled by default
+
 # 0.3.2 (25-07-2023)
 - add default to `is_flag=True` options to allow it in `get_options_defaults` result
 - add option to disable healthcheck endpoint in `net.http.server`
